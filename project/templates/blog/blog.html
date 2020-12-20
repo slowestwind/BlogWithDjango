@@ -2,5 +2,33 @@
 {% block title %}
 Blog | BlogNow
 {% endblock title %}
+{% load static %}
 {% block body %}
+    <div class="container">
+        <h3 >Popular Blogs on BlogNow</h3>
+        {% for post in allPost %}
+        <div class="row mb-0">
+            <div class="col-sm-6 mt-0">
+                <div class="blog-title">
+                    <h4>{{post.blog_title}}</h4>
+                </div>
+                <div class="time-author">
+                    <p>{{post.blog_time}} by {{post.blog_author}}</p>
+                </div>
+                <div class="blog-content">
+                    <p>{{post.blog_content|truncatechars:200}}</p>
+                </div>
+                <div class="read-more">
+                <a href="blog/{{post.blog_slug}}"><button class="btn btn-primary" >Read more</button></a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <img src="media/{{post.blog_thumbnail}}" alt="blog" width="100%"  height="230">
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+
+
 {%endblock body %}

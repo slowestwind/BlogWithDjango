@@ -2,6 +2,7 @@
 {% block title %}
 Home | BlogNow
 {% endblock title %}
+{% load static %}
 {% block body %}
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -13,21 +14,21 @@ Home | BlogNow
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="https://source.unsplash.com/1080x720/?cyber, technology" width="1200" height="700">
+            <img src="{% static 'images/technology.jpeg' %}" width="100%" height="100vh">
             <div class="carousel-caption">
                 <h3>Technology</h3>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
             </div>
         </div>
         <div class="item">
-            <img src="../../static/images/business.jpeg"  width="1200" height="700">
+            <img src="{% static 'images/business.jpeg' %}"  width="1200" height="700">
             <div class="carousel-caption">
                 <h3>Business</h3>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
             </div>
         </div>
         <div class="item">
-            <img src="../../static/images/entertainment.jpeg" width="1200" height="700">
+            <img src="{% static 'images/entertainment.jpeg' %}" width="1200" height="700">
             <div class="carousel-caption">
                 <h3>Entertainment</h3>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
@@ -46,7 +47,7 @@ Home | BlogNow
 </div>
 <!-- Container (The Band Section) -->
 <div id="band" class="container text-center">
-    <h3>BLOCK NOW</h3>
+    <h3>BLOG NOW</h3>
     <p><em>We love blogging!</em></p>
     <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     <br>
@@ -54,7 +55,7 @@ Home | BlogNow
         <div class="col-sm-4">
             <p class="text-center"><strong>Arvind Sharma</strong></p><br>
             <a href="#demo" data-toggle="collapse">
-                <img src="https://source.unsplash.com/400x400/?man, businessman" class="img-circle person" alt="Random Name" width="255" height="255">
+                <img src="{% static 'images/person.jpeg' %}" class="img-circle person" alt="Random Name" width="255" height="255">
             </a>
             <div id="demo" class="collapse">
                 <p>Bass player</p>
@@ -65,7 +66,7 @@ Home | BlogNow
         <div class="col-sm-4">
             <p class="text-center"><strong>Suraj Singh Bisht</strong></p><br>
             <a href="#demo2" data-toggle="collapse">
-                <img src="https://source.unsplash.com/400x400/?man, businessman" class="img-circle person" alt="Random Name" width="255" height="255">
+                <img src="{% static 'images/person.jpeg' %}" class="img-circle person" alt="Random Name" width="255" height="255">
             </a>
             <div id="demo2" class="collapse">
                 <p>Drummer</p>
@@ -76,7 +77,7 @@ Home | BlogNow
         <div class="col-sm-4">
             <p class="text-center"><strong>Himanshu Sharma</strong></p><br>
             <a href="#demo3" data-toggle="collapse">
-                <img src="https://source.unsplash.com/400x400/?man, businessman " class="img-circle person" alt="Random Name" width="255" height="255">
+                <img src="{% static 'images/person.jpeg' %}" class="img-circle person" alt="Random Name" width="255" height="255">
             </a>
             <div id="demo3" class="center collapse">
                 <p>Bass player</p>
@@ -92,30 +93,19 @@ Home | BlogNow
         <h3 class="text-center">Trending Blogposts</h3>
         <p class="text-center">Remember to Look once these blogpost!</p>
         <div class="row text-center">
-            <div class="col-sm-4">
-                <div class="thumbnail">
-                    <img src="https://source.unsplash.com/400x300/?blog,website" alt="Paris" width="400" height="300">
-                    <p><strong>Blog Title</strong></p>
-                    <p>Description: Remember to Look once these blogpost! </p>
-                    <button class="btn" data-toggle="modal" data-target="#myModal">Read more</button>
+
+            {% for post in allPost %}
+                {% if post.blog_id < 4 %}
+                <div class="col-sm-4">
+                    <div class="thumbnail">
+                        <img src="/media/{{post.blog_thumbnail}}" width="400" height="300">
+                        <p><strong>{{post.blog_title}}</strong></p>
+                        <p>{{post.blog_content|truncatechars:150}}</p>
+                        <a href="{{post.blog_slug}}"><button class="btn" data-toggle="modal" data-target="#myModal">Read more</button></a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="thumbnail">
-                    <img src="https://source.unsplash.com/400x300/?blog,website" alt="Paris" width="400" height="300">
-                    <p><strong>Blog Title</strong></p>
-                    <p>Description: Remember to Look once these blogpost! </p>
-                    <button class="btn" data-toggle="modal" data-target="#myModal">Read more</button>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="thumbnail">
-                    <img src="https://source.unsplash.com/400x300/?blog,website" alt="Paris" width="400" height="300">
-                    <p><strong>Blog Title</strong></p>
-                    <p>Description: Remember to Look once these blogpost! </p>
-                    <button class="btn" data-toggle="modal" data-target="#myModal">Read more</button>
-                </div>
-            </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -130,23 +120,26 @@ Home | BlogNow
             <p><span class="glyphicon glyphicon-phone"></span>Phone: +91 8888888888</p>
             <p><span class="glyphicon glyphicon-envelope"></span>Email: gmail@gmail.com</p>
         </div>
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        <form action="contact/" method="post">
+            {% csrf_token %}
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                    </div>
                 </div>
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                <textarea class="form-control" id="message" name="message" placeholder="Message" rows="5"></textarea>
+                <br>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <button class="btn pull-right" type="submit">Send</button>
+                    </div>
                 </div>
             </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-            <br>
-            <div class="row">
-                <div class="col-md-12 form-group">
-                    <button class="btn pull-right" type="submit">Send</button>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
     <br>
 </div>

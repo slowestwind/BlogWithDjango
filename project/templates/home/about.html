@@ -2,11 +2,12 @@
 {% block title %}
 About Us | BlogNow
 {% endblock title %}
+{% load static %}
 {% block body %}
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <img src="https://source.unsplash.com/300x500/?about, building" alt="about-image">
+            <img src="{% static 'images/about.jpeg' %}" alt="about-image">
         </div>
         <div class="col-sm-8">
             <div class="about-heading">
