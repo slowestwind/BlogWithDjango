@@ -10,6 +10,7 @@ class Contact(models.Model):
     contact_time = models.DateTimeField(auto_now_add=True, blank="true")
 
     def __str__(self):
+        # Contact table, field that will be showing in the admin panel
         return 'Message by: '+self.contact_name+'- '+str(self.contact_time)
     
 

@@ -5,6 +5,7 @@ from django.contrib import messages
 from blog.models import BlogPost
 
 # Create your views here.
+# this functin will be executed if user visited on home link.
 def home(request):
 	allPost = BlogPost.objects.all()
 	context = {
@@ -13,6 +14,7 @@ def home(request):
 	print(context)
 	return render(request, 'home/index.html', context)
 
+# this functin will be executed if user visited on contact link.
 def contact(request):
 	if(request.method == "POST"):
 		name = request.POST['name']
@@ -29,5 +31,18 @@ def contact(request):
 
 	return render(request, 'home/contact.html')
 
+# this functin will be executed if user visited on about link.
 def about(request):
 	return render(request, 'home/about.html')
+
+
+# this functin will be executed if user visited on search button in navbar.
+def search(request):
+	query = request.GET(search)
+	allPost = BlogPost.objects.all()
+	param = {
+		'allPost':allPost,
+		'query':query,
+
+	}
+	return render(request, 'home..html', param)
