@@ -1,21 +1,23 @@
 {% extends "basic.html" %}
 {% block title %}
-Blog Post | BlogNow
-{% endblock title %}
-
-{% load static %}
-
-{% extends "basic.html" %}
-{% block title %}
 Blog | BlogNow
 {% endblock title %}
 {% load static %}
 {% block body %}
-    <div class="container" style="margin-top:50px;">
-        <h3 >Search Result:{{query}}</h3>
-
-        {% for post in allPost %}
-        <div class="row mb-0">
+    {% if allPosts|length < 1 %}
+    <div class="container" style="margin-top:50px">
+        <h3 >Search Result:</h3>
+        <p>Result not found for search query: <strong>{{query}}</strong> </p>
+        <p>Suggestions:</p>
+        <ul>
+            <li>Because we limit queries to 32 words.</li>
+            <li>Use small query for search.</li>
+            <li>Try some other query.</li>
+        </ul>
+    </div>
+        {% else %}
+            {% for post in allPosts %}
+        <div class="container" style="margin-top:50px">
             <div class="col-sm-6 mt-0">
                 <a href="{{post.blog_slug}}">
                 <div class="blog-title">
@@ -34,14 +36,13 @@ Blog | BlogNow
             </div>
             <div class="col-sm-6">
                 <a href="{{post.blog_slug}}">
-                <img src="media/{{post.blog_thumbnail}}" alt="blog" width="100%"  height="230">
+                <img src="/blog/media/{{post.blog_thumbnail}}" alt="blog" width="100%"  height="230">
                 </a>
             </div>
             
         </div>
         <br>
         {% endfor %}
-    </div>
-
+    {% endif %}
 
 {%endblock body %}

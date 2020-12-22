@@ -38,11 +38,22 @@ def about(request):
 
 # this functin will be executed if user visited on search button in navbar.
 def search(request):
-	query = request.GET(search)
-	allPost = BlogPost.objects.all()
-	param = {
-		'allPost':allPost,
-		'query':query,
+	
+	# get the query from search form
+	query = request.GET['query']
 
+	# validate the query
+	if len(query) > 50:
+		allPosts = []
+	else: 		
+	# search query in the title and description
+		titleSearch = BlogPost.objects.filter(blog_title__icontains = query)
+		contentSearch = BlogPost.objects.filter(blog_content__icontains = query)
+		allPosts = titleSearch.union(contentSearch)
+		messages.success(request, "Your search Result")
+	# put it in the parameter to pass in search result
+	param = {
+		'allPosts':allPosts,
+		'query':query
 	}
-	return render(request, 'home..html', param)
+	return render(request, 'home/search.html', param)
