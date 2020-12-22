@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from home.models import Contact
 from django.contrib import messages
 from blog.models import BlogPost
+# import paginator to paginate our page
+from django.core.paginator import Paginator
 
 # Create your views here.
 # this functin will be executed if user visited on home link.
@@ -51,9 +53,16 @@ def search(request):
 		contentSearch = BlogPost.objects.filter(blog_content__icontains = query)
 		allPosts = titleSearch.union(contentSearch)
 		messages.success(request, "Your search Result")
+		# paginator will show 3 posts per page
+		paginator = Paginator(allPosts, 3)
+		# get the page number 
+		page_number = request.GET.get('page')
+		# show the page to user
+		page_obj = paginator.get_page(page_number)
 	# put it in the parameter to pass in search result
 	param = {
 		'allPosts':allPosts,
-		'query':query
+		'query':query,
+		'page_obj':page_obj
 	}
 	return render(request, 'home/search.html', param)

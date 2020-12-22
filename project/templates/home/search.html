@@ -17,32 +17,52 @@ Blog | BlogNow
     </div>
         {% else %}
             {% for post in allPosts %}
-        <div class="container" style="margin-top:50px">
-            <div class="col-sm-6 mt-0">
-                <a href="{{post.blog_slug}}">
-                <div class="blog-title">
-                    <h4>{{post.blog_title}}</h4>
+                <div class="container" style="margin-top:50px">
+                    <div class="col-sm-6 mt-0">
+                        <a href="{{post.blog_slug}}">
+                        <div class="blog-title">
+                            <h4>{{post.blog_title}}</h4>
+                        </div>
+                        </a>
+                        <div class="time-author">
+                            <p><span class="glyphicon glyphicon-time" style="margin:0px 5px 0px 0px;"> </span>{{post.blog_time}} by {{post.blog_author}}</p>
+                        </div>
+                        <div class="blog-content">
+                            <p>{{post.blog_content|truncatechars:200}}</p>
+                        </div>
+                        <div class="read-more">
+                        <a href="{{post.blog_slug}}"><button class="btn btn-primary" >Read more</button></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="{{post.blog_slug}}">
+                        <img src="/blog/media/{{post.blog_thumbnail}}" alt="blog" width="100%"  height="230">
+                        </a>
+                    </div>
+                    
                 </div>
-                </a>
-                <div class="time-author">
-                    <p><span class="glyphicon glyphicon-time" style="margin:0px 5px 0px 0px;"> </span>{{post.blog_time}} by {{post.blog_author}}</p>
-                </div>
-                <div class="blog-content">
-                    <p>{{post.blog_content|truncatechars:200}}</p>
-                </div>
-                <div class="read-more">
-                <a href="{{post.blog_slug}}"><button class="btn btn-primary" >Read more</button></a>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <a href="{{post.blog_slug}}">
-                <img src="/blog/media/{{post.blog_thumbnail}}" alt="blog" width="100%"  height="230">
-                </a>
-            </div>
-            
-        </div>
-        <br>
+                <br>
         {% endfor %}
     {% endif %}
+
+    <!-- show pagination  -->
+<div class="pagination container">
+
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 
 {%endblock body %}

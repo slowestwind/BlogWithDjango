@@ -4,8 +4,9 @@ A fully functional general purpose blog website created with django framework us
 ## Features
 * Nice UI (still on progress)
 * Working contact page 
-* Blogpost handling from database
-* Search in website 
+* Blogpost handling from backend
+* Search facility
+* Pagination 
 
 ## Preview
 
