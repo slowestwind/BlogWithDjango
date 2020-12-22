@@ -4,25 +4,32 @@ A fully functional general purpose blog website created with django framework us
 ## Features
 * Nice UI (still on progress)
 * Working contact page 
-* Blogpost handling from backend
+* Post handling from backend
 * Search facility
 * Pagination 
+* Previous and Next Post suggestion
 
 ## Preview
 
-### homepage page
+### Homepage
 ![img](homepage.png)
 
-### blogpage page
+### Blogpage
 ![img](blog-section.png)
 
-### blogpost page
+### Pagination: 10 Post per page
+![img](pagination-section.png)
+
+### Post page
 ![img](blogpost.png)
 
-### contact page
+### suggestion: Previous and Next Post
+![img](pre-next-post.png)
+
+### Contact page
 ![img](contact.png)
 
-### about page
+### About page
 ![img](about.png)
 
 ## Upcomming Updates
@@ -33,3 +40,5 @@ A fully functional general purpose blog website created with django framework us
 * sidebar update
 * comment section
 * social media share button
+
+

@@ -10,11 +10,11 @@ from django.core.paginator import Paginator
 # this functin will be executed if user visited on home link.
 def home(request):
 	allPost = BlogPost.objects.all()
-	context = {
-		'allPost':allPost,
+	param = {
+		'allPost':allPost
 	}
-	print(context)
-	return render(request, 'home/index.html', context)
+
+	return render(request, 'home/index.html', param)
 
 # this functin will be executed if user visited on contact link.
 def contact(request):

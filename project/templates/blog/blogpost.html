@@ -27,6 +27,48 @@ Blog Post | BlogNow
       <br>
       <p>{{post.blog_content}}</p>
        <hr> 
+
+       <!-- pagination previous and next -->
+       <div class="row">
+       <!-- pagination previous page -->
+          <div class="col-sm-6">
+          <span>
+            Previous Post:
+            <a href="/blog/{{nPost.blog_slug}}"><strong>{{pPost.blog_title}}</strong> </a>
+          </span>
+          </div>
+       <!-- pagination next page -->
+            <div class="col-sm-6">
+            <span> Next Post:
+            <a href="/blog/{{nPost.blog_slug}}"><strong>{{nPost.blog_title}}</strong></a>
+            </span>
+          </div>
+       </div>
+
+       <div class="row text-center border">
+                <div class="col-sm-6">
+                {% if post.blog_id > 1 %}
+                    <div class="thumbnail">
+                        <img src="/media/{{pPost.blog_thumbnail}}" width="400" height="300">
+                        <p><strong>{{pPost.blog_title}}</strong></p>
+                        <p>{{pPost.blog_content|truncatechars:140}}</p>
+                        <a href="{{pPost.blog_slug}}"><button class="btn" data-toggle="modal" data-target="#myModal">Read more</button></a>
+                    </div>
+                  {% endif %}
+                </div>
+                
+                <div class="col-sm-6">
+                    <div class="thumbnail">
+                        <img src="/media/{{nPost.blog_thumbnail}}" width="400" height="300">
+                        <p><strong>{{nPost.blog_title}}</strong></p>
+                        <p>{{nPost.blog_content|truncatechars:140}}</p>
+                        <a href="{{nPost.blog_slug}}"><button class="btn" data-toggle="modal" data-target="#myModal">Read more</button></a>
+                    </div>
+                </div>
+        </div>
+       
+    
+
         
       <h4>Leave a Comment:</h4>
       <form role="form">
